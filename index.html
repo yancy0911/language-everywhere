@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Language Everywhere</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;max-width:920px;margin:22px auto;padding:0 14px}
+    h1{margin:0 0 6px}
+    .muted{color:#666;line-height:1.5}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    select,input,button{font-size:16px;padding:10px;border:1px solid #ccc;border-radius:12px}
+    button{cursor:pointer}
+    .card{border:1px solid #e6e6e6;border-radius:18px;padding:16px;margin:14px 0}
+    .big{font-size:26px;font-weight:800;line-height:1.25}
+    .pill{display:inline-block;background:#f4f4f4;border:1px solid #e9e9e9;border-radius:999px;padding:4px 10px}
+    .grid{display:grid;gap:10px}
+    .two{grid-template-columns:1fr 1fr}
+    @media (max-width:720px){.two{grid-template-columns:1fr}}
+    .k{font-weight:800}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+    .line{height:1px;background:#eee;margin:12px 0}
+    .btnbar{display:flex;gap:10px;flex-wrap:wrap}
+    .btnbar button{min-width:130px}
+    .small{font-size:14px}
+  </style>
+</head>
+<body>
+  <h1>Language Everywhere</h1>
+  <div class="muted">高级短句 / 高级对话 / 短文（8语言可切换）｜随机学习｜收藏｜一键复制内容（方便你口播/笔记）</div>
+
+  <div class="card">
+    <div class="row">
+      <span class="pill">语言</span>
+      <select id="lang">
+        <option value="en">英语 EN</option>
+        <option value="es">西班牙语 ES</option>
+        <option value="fr">法语 FR</option>
+        <option value="ar">阿拉伯语 AR</option>
+        <option value="hi">印地语 HI</option>
+        <option value="pt">葡萄牙语 PT</option>
+        <option value="ru">俄语 RU</option>
+        <option value="ja">日语 JA</option>
+      </select>
+
+      <span class="pill">类型</span>
+      <select id="type">
+        <option value="phrase">高级短句</option>
+        <option value="dialog">高级对话</option>
+        <option value="article">短文</option>
+      </select>
+
+      <span class="pill">等级</span>
+      <select id="level">
+        <option value="any">不限</option>
+        <option value="B2">B2</option>
+        <option value="C1">C1</option>
+      </select>
+
+      <button id="pick">随机来一条</button>
+      <button id="reveal">显示/隐藏讲解</button>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="grid">
+      <div class="big" id="text">点“随机来一条”开始</div>
+
+      <div id="details" style="display:none">
+        <div class="grid two">
+          <div><span class="k">中文意境：</span><span id="zh"></span></div>
+          <div><span class="k">讲解：</span><span id="note"></span></div>
+        </div>
+      </div>
+
+      <div class="btnbar">
+        <button id="fav">收藏/取消收藏</button>
+        <button id="copy">复制这条</button>
+        <button id="openRandom">打开：今日随机页</button>
+      </div>
+
+      <div class="muted small">提示：iPhone 用 Safari 打开后“添加到主屏幕”，就像一个App图标。</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="row">
+      <span class="pill">收藏列表</span>
+      <button id="exportFav">导出收藏TXT</button>
+      <button id="clearFav">清空收藏</button>
+    </div>
+    <div class="line"></div>
+    <div id="favList" class="muted">暂无收藏</div>
+  </div>
+
+<script>
+  const DATA_URL = "./data.json";
+  const FAV_KEY = "le_favs_v1";
+  let DATA = [];
+  let current = null;
+
+  const $ = (id)=>document.getElementById(id);
+
+  function loadFavs(){
+    try{ return JSON.parse(localStorage.getItem(FAV_KEY) || "[]"); }catch{ return []; }
+  }
+  function saveFavs(list){ localStorage.setItem(FAV_KEY, JSON.stringify(list)); }
+
+  function escapeHtml(str){
+    return String(str ?? "").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;");
+  }
+
+  function renderFavs(){
+    const favs = loadFavs();
+    if(!favs.length){ $("favList").textContent = "暂无收藏"; return; }
+    $("favList").innerHTML = favs.map(x => `
+      <div style="padding:10px 0;border-bottom:1px solid #eee">
+        <div class="mono">${escapeHtml((x.lang||"").toUpperCase())} · ${escapeHtml(x.type)} · ${escapeHtml(x.level)}</div>
+        <div style="font-weight:800">${escapeHtml(x.text)}</div>
+        <div class="muted">${escapeHtml(x.translation || "")}</div>
+      </div>
+    `).join("");
+  }
+
+  function poolByFilter(){
+    const lang = $("lang").value;
+    const type = $("type").value;
+    const level = $("level").value;
+    return DATA.filter(x =>
+      x.lang === lang &&
+      x.type === type &&
+      (level === "any" || x.level === level)
+    );
+  }
+
+  function pickOne(){
+    const pool = poolByFilter();
+    if(!pool.length){
+      alert("这个筛选条件下没有内容。先改成“等级不限”，或去 data.json 里加内容。");
+      return;
+    }
+    current = pool[Math.floor(Math.random() * pool.length)];
+    $("text").textContent = current.text;
+    $("zh").textContent = current.translation || "";
+    $("note").textContent = current.notes || "";
+  }
+
+  function toggleFav(){
+    if(!current){ alert("先随机出一条再收藏"); return; }
+    const favs = loadFavs();
+    const idx = favs.findIndex(x => x.id === current.id);
+    if(idx >= 0) favs.splice(idx, 1);
+    else favs.unshift(current);
+    saveFavs(favs);
+    renderFavs();
+  }
+
+  function copyCurrent(){
+    if(!current){ alert("先随机出一条再复制"); return; }
+    const s = [
+      `${(current.lang||"").toUpperCase()} · ${current.type} · ${current.level}`,
+      current.text,
+      `中文意境：${current.translation || ""}`,
+      `讲解：${current.notes || ""}`
+    ].join("\n");
+    navigator.clipboard.writeText(s).then(()=>alert("已复制到剪贴板"));
+  }
+
+  async function init(){
+    const r = await fetch(DATA_URL, {cache:"no-store"});
+    DATA = await r.json();
+    renderFavs();
+
+    // 支持 ?lang=en&type=phrase&level=C1 自动出一条（给快捷指令用）
+    const q = new URLSearchParams(location.search);
+    const lang = q.get("lang");
+    const type = q.get("type");
+    const level = q.get("level");
+    if(lang) $("lang").value = lang;
+    if(type) $("type").value = type;
+    if(level) $("level").value = level;
+    if(q.has("auto")) pickOne();
+  }
+
+  $("pick").onclick = pickOne;
+  $("fav").onclick = toggleFav;
+  $("copy").onclick = copyCurrent;
+
+  $("reveal").onclick = ()=>{
+    const d = $("details");
+    d.style.display = (d.style.display === "none") ? "block" : "none";
+  };
+
+  $("openRandom").onclick = ()=>{
+    const lang = $("lang").value;
+    const type = $("type").value;
+    const level = $("level").value === "any" ? "" : $("level").value;
+    const url = `./index.html?auto=1&lang=${encodeURIComponent(lang)}&type=${encodeURIComponent(type)}${level?`&level=${encodeURIComponent(level)}`:""}`;
+    location.href = url;
+  };
+
+  $("exportFav").onclick = ()=>{
+    const favs = loadFavs();
+    const lines = favs.map(x => `${(x.lang||"").toUpperCase()} · ${x.type} · ${x.level}\n${x.text}\n${x.translation || ""}\n${x.notes || ""}\n---\n`).join("\n");
+    const blob = new Blob([lines || "暂无收藏"], {type:"text/plain;charset=utf-8"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "favorites.txt";
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  $("clearFav").onclick = ()=>{
+    if(!confirm("确定清空收藏？")) return;
+    saveFavs([]);
+    renderFavs();
+  };
+
+  init();
+</script>
+</body>
+</html>
