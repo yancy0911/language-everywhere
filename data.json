@@ -1,0 +1,33 @@
+[
+  {"id":"en-phrase-001","lang":"en","level":"C1","type":"phrase","text":"I’m not chasing perfection; I’m building consistency.","translation":"我不追完美，我在练稳定。","notes":"chase perfection=追完美；build consistency=练稳定输出。很适合口播。"},
+  {"id":"en-dialog-001","lang":"en","level":"C1","type":"dialog","text":"A: I value clarity over comfort. B: Then let’s be honest, not polite.","translation":"A：我更重视清晰，而不是舒服。B：那我们就坦诚，不要客套。","notes":"clarity over comfort=清晰优先；honest, not polite=真诚但不讨好。"},
+  {"id":"en-article-001","lang":"en","level":"B2","type":"article","text":"Discipline isn’t a personality trait. It’s a set of decisions you practice until they feel natural.","translation":"自律不是性格，而是一组你练到自然的选择。","notes":"读法：先慢读两遍，再用中文复述一句意思。"},
+  
+  {"id":"es-phrase-001","lang":"es","level":"C1","type":"phrase","text":"No busco aplausos; busco resultados.","translation":"我不求掌声，我要结果。","notes":"很高级的简短表达，适合口播。"},
+  {"id":"es-dialog-001","lang":"es","level":"C1","type":"dialog","text":"A: Prefiero la verdad a la comodidad. B: Entonces hablemos claro.","translation":"A：我宁要真相，不要舒服。B：那就说清楚。","notes":"hablemos claro=我们把话说清楚（很地道）。"},
+  {"id":"es-article-001","lang":"es","level":"B2","type":"article","text":"La disciplina se construye en lo pequeño: una decisión correcta, repetida, hasta que se vuelve identidad.","translation":"自律建在小事上：一个正确决定，重复到成为你的身份。","notes":"适合练“断句”：每逗号停一下。"},
+  
+  {"id":"fr-phrase-001","lang":"fr","level":"C1","type":"phrase","text":"Je ne cherche pas la perfection; je cherche la constance.","translation":"我不求完美，我求恒常。","notes":"constance=稳定/恒常，法语高级感很强。"},
+  {"id":"fr-dialog-001","lang":"fr","level":"C1","type":"dialog","text":"A: J’ai besoin de clarté. B: Alors soyons directs, sans détour.","translation":"A：我需要清晰。B：那我们直说，别绕。","notes":"sans détour=不绕弯子。"},
+  {"id":"fr-article-001","lang":"fr","level":"B2","type":"article","text":"La discipline n’est pas un don; c’est une pratique. Ce que vous répétez devient votre style.","translation":"自律不是天赋，而是练习。你反复做的事，会变成你的风格。","notes":"适合每天读1段+抄写1句。"},
+  
+  {"id":"ar-phrase-001","lang":"ar","level":"C1","type":"phrase","text":"أنا لا ألاحق الكمال؛ أنا أبني الاستمرارية.","translation":"我不追完美，我在建立持续性。","notes":"阿语先不纠结读音，先把“句型”记住。"},
+  {"id":"ar-dialog-001","lang":"ar","level":"C1","type":"dialog","text":"A: أفضّل الوضوح على الراحة. B: إذن لنتحدث بصراحة.","translation":"A：我更要清晰，而不是舒服。B：那我们坦诚地谈。","notes":"بصراحة=坦诚地（常用但很有力量）。"},
+  {"id":"ar-article-001","lang":"ar","level":"B2","type":"article","text":"الانضباط يُبنى من قرارات صغيرة تتكرر حتى تصبح عادة.","translation":"自律来自小决定的重复，直到成为习惯。","notes":"短文读法：慢读+看中文意境，先建立熟悉感。"},
+  
+  {"id":"hi-phrase-001","lang":"hi","level":"C1","type":"phrase","text":"मैं परफेक्शन नहीं, निरंतरता बनाता/बनाती हूँ।","translation":"我不追完美，我在练持续。","notes":"印地语先“认形”，不用急着会读。"},
+  {"id":"hi-dialog-001","lang":"hi","level":"C1","type":"dialog","text":"A: मुझे स्पष्टता चाहिए। B: तो चलिए साफ़-साफ़ बात करते हैं।","translation":"A：我需要清晰。B：那就直说。","notes":"साफ़-साफ़=明明白白/直截了当。"},
+  {"id":"hi-article-001","lang":"hi","level":"B2","type":"article","text":"अनुशासन कोई गुण नहीं; यह रोज़ के छोटे फैसलों की आदत है।","translation":"自律不是天赋，而是每天小决定形成的习惯。","notes":"不要贪多：一天一句就够。"},
+  
+  {"id":"pt-phrase-001","lang":"pt","level":"C1","type":"phrase","text":"Eu não persigo perfeição; eu construo consistência.","translation":"我不追完美，我打造稳定。","notes":"葡语和英语结构很像，学起来快。"},
+  {"id":"pt-dialog-001","lang":"pt","level":"C1","type":"dialog","text":"A: Eu prefiro clareza a conforto. B: Então vamos ser diretos.","translation":"A：我更要清晰，而不是舒服。B：那我们直说。","notes":"vamos ser diretos=我们直说。"},
+  {"id":"pt-article-001","lang":"pt","level":"B2","type":"article","text":"Disciplina é o que você faz quando ninguém está olhando.","translation":"自律，是没人看着时你依然会做的事。","notes":"短而狠，适合口播。"},
+  
+  {"id":"ru-phrase-001","lang":"ru","level":"C1","type":"phrase","text":"Я не гонюсь за идеалом; я строю стабильность.","translation":"我不追完美，我在建立稳定。","notes":"строю=建立/打造。"},
+  {"id":"ru-dialog-001","lang":"ru","level":"C1","type":"dialog","text":"A: Мне нужна ясность. B: Тогда говорим прямо.","translation":"A：我需要清晰。B：那就直说。","notes":"говорим прямо=直说。"},
+  {"id":"ru-article-001","lang":"ru","level":"B2","type":"article","text":"Дисциплина начинается с малого: одно верное решение, повторённое много раз.","translation":"自律始于小事：一个正确的决定，被重复很多次。","notes":"俄语先跟读“节奏”，不要纠结每个音。"},
+  
+  {"id":"ja-phrase-001","lang":"ja","level":"C1","type":"phrase","text":"完璧を求めない。積み重ねを選ぶ。","translation":"不求完美，选择积累。","notes":"日语这类短句特别适合做座右铭。"},
+  {"id":"ja-dialog-001","lang":"ja","level":"C1","type":"dialog","text":"A: 私は心地よさより明確さを選ぶ。B: じゃ、遠回しはやめよう。","translation":"A：我宁要清晰，不要舒服。B：那就别绕弯子。","notes":"遠回しはやめよう=别拐弯抹角。"},
+  {"id":"ja-article-001","lang":"ja","level":"B2","type":"article","text":"習慣は才能ではない。毎日の小さな選択が、あなたの基準になる。","translation":"习惯不是天赋。每天的小选择，会变成你的标准。","notes":"先读懂中文意境，再对照日文“句子骨架”。"}
+]
