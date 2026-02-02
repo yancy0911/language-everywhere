@@ -31,3 +31,13 @@
   {"id":"ja-dialog-001","lang":"ja","level":"C1","type":"dialog","text":"A: 私は心地よさより明確さを選ぶ。B: じゃ、遠回しはやめよう。","translation":"A：我宁要清晰，不要舒服。B：那就别绕弯子。","notes":"遠回しはやめよう=别拐弯抹角。"},
   {"id":"ja-article-001","lang":"ja","level":"B2","type":"article","text":"習慣は才能ではない。毎日の小さな選択が、あなたの基準になる。","translation":"习惯不是天赋。每天的小选择，会变成你的标准。","notes":"先读懂中文意境，再对照日文“句子骨架”。"}
 ]
+,
+{
+  "id": "en-phrase-test-001",
+  "lang": "en",
+  "level": "C1",
+  "type": "phrase",
+  "text": "Calm is a form of control.",
+  "translation": "冷静本身就是一种掌控。",
+  "notes": "极短高级句，适合每天反复看。"
+}
